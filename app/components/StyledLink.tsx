@@ -2,6 +2,12 @@ import { Link as RadixLink } from "@radix-ui/themes";
 import NextLink from "next/link";
 
 /**
+ * Here, we'd like to use radix's Link component, to ensure that the styles stay
+ * consistent, and always matches the theme.
+ * However, we also want to use next's Link to ensure we are not reloading the
+ * page on navigation, i.e. we are doing client side navigation.
+ * For these 2 to work together, we need to do the following:
+ * 
  * If the child of Link is a custom component that wraps an <a> tag,
  * you must add passHref to Link.
  * This is necessary if you’re using libraries like styled-components.
