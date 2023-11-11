@@ -1,5 +1,4 @@
-import IssueStatusBadge from "@/app/components/IssueStatusBadge";
-import StyledLink from "@/app/components/StyledLink";
+import { IssueStatusBadge, StyledLink } from "@/app/components";
 import { Issue } from "@prisma/client";
 import { Table } from "@radix-ui/themes";
 
