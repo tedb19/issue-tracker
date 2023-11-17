@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={inter.variable} suppressHydrationWarning>
         <Theme appearance="light" accentColor="violet" panelBackground="solid">
           <NavBar />
-          <main className="px-5 mx-0 my-auto max-w-xl">{children}</main>
+          <main className="px-5 mx-0 my-auto">{children}</main>
         </Theme>
       </body>
     </html>

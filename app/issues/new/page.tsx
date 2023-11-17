@@ -2,7 +2,7 @@
 import { ErrorMessage, Spinner } from "@/app/components";
 import { createIssueSchema } from "@/app/validationSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Callout, TextField } from "@radix-ui/themes";
+import { Box, Button, Callout, Grid, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
@@ -40,33 +40,35 @@ const NewIssue = () => {
   };
 
   return (
-    <div className="space-y-3">
-      {error && (
-        <Callout.Root color="red">
-          <Callout.Icon>
-            <AiOutlineInfoCircle />
-          </Callout.Icon>
-          <Callout.Text>{error}</Callout.Text>
-        </Callout.Root>
-      )}
-      <form className="space-y-3" onSubmit={handleSubmit(handleSubmitIssue)}>
-        <TextField.Root>
-          <TextField.Input placeholder="Title" {...register("title")} />
-        </TextField.Root>
-        <ErrorMessage>{errors.title?.message}</ErrorMessage>
-        <Controller
-          name="description"
-          control={control}
-          render={({ field }) => (
-            <SimpleMDE placeholder="Description" {...field} />
-          )}
-        />
-        <ErrorMessage>{errors.description?.message}</ErrorMessage>
-        <Button disabled={isSubmitting}>
-          Create Issue {isSubmitting && <Spinner />}
-        </Button>
-      </form>
-    </div>
+    <Grid gap="4" columns={{ initial: "1", md: "2" }}>
+      <Box className="space-y-3">
+        {error && (
+          <Callout.Root color="red">
+            <Callout.Icon>
+              <AiOutlineInfoCircle />
+            </Callout.Icon>
+            <Callout.Text>{error}</Callout.Text>
+          </Callout.Root>
+        )}
+        <form className="space-y-3" onSubmit={handleSubmit(handleSubmitIssue)}>
+          <TextField.Root>
+            <TextField.Input placeholder="Title" {...register("title")} />
+          </TextField.Root>
+          <ErrorMessage>{errors.title?.message}</ErrorMessage>
+          <Controller
+            name="description"
+            control={control}
+            render={({ field }) => (
+              <SimpleMDE placeholder="Description" {...field} />
+            )}
+          />
+          <ErrorMessage>{errors.description?.message}</ErrorMessage>
+          <Button disabled={isSubmitting}>
+            Create Issue {isSubmitting && <Spinner />}
+          </Button>
+        </form>
+      </Box>
+    </Grid>
   );
 };
 
